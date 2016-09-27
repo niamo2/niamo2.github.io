@@ -1,0 +1,60 @@
+<script src="../lib/tracery.js"></script>
+<script src="../lib/mousetrap.min.js"></script>
+<script src="../lib/jquery-1.11.1.min.js"></script>
+<h1>Tell me</h1>
+<button onclick="generate()">here</button>
+<script>
+var grammarObj = {
+
+	"Generation": ["#lake#", "#sentence#"],
+
+	"lake": ["I like to come here #sentiment#", "this is my place #sentiment#", "#sentiment#, #wateraction#", "#water#", "#midsentence#", "#sentence#"],
+
+	"water": ["#wateraction#, #wateraction#", "tell me, #waterquestion#"],
+
+	"wateraction": ["the water here keeps me still", "the sun here keeps me warm", "this bench makes me feel solid", "this water is here for me", "this place makes me feel alive", "the wind here blows through me", "the sky goes on and on", "this tree here doesn't care", "these skipping stones don't give a fuck", "the silence blasts it out of me", "this is where I can wallow", "the air is different here", "the smell here keeps me from floating away"],
+
+	"waterquestion": ["do you see the #aspect#?", "do you see the smoothness of the #aspect#?"],
+
+	"aspect": ["water", "ripples in the water", "rocks", "skipping stones", "trees", "silence", "air", "smell", "scenery", "solitude", "footprints", "ground", "mist"],
+
+	"sentiment": ["when my mind gets too full", "when the world goes too fast", "when I need to catch my breath", "when I feel empty", "when I don't know what to do", "when I just want to run away", "when I feel stuck", "when the world sucks", "when I feel like shit", "when everyone is out to get me", "when I come here alone", "when my life is falling apart", "when I don't know who I am", "when I've failed at something", "when I feel confined", "when I can't keep going", "when I have to just keep going", "when something's wrong", "when I can't sleep", "when my body is in pain"],
+
+	"sentence": ["#subjectyou##youaction#", "#subjecti##iaction#", "#lake#"],
+
+	"midsentence": ["#subjectyou##youaction#", "#subjecti##iaction#", "#order#"],
+
+	"subjectyou": ["you", "it seems like you", "I think you", "I wonder why you", "I know you", "tell me why you", "I wondered why you"],
+
+	"order": ["and yet", "hey there #student#", "you know", "still, sometimes...", "you know what really sucks?"],
+
+	"youaction": ["\'re so unhappy", "\ haven't really been here#time#", "\'ve been gone", "\ were happy before #event#", "\ haven't thought about it#time#", "\'ve been shaking #otherplace#", "\ can't sleep at night", "\ couldn\'t sleep after #event#", "\ lost yourself", "\ were fantisizing about #student#", "\'ve been unhappy#time#", "\ need something different", "\'ve been different since #event#", "\ needed me #amount#", "\  were selfish", "\'ve been floating away", "\'ve been floating away#time#", "\ waited so long", "\'ve waited#time#", "\ keep looking away", "\ can\'t hide any more", "\'ve been hiding#time#", "\ try so hard", "\ tried so hard#time#"],
+
+	"otherplace": ["whenever I'm not looking", "behind my back", "when you sleep at night", "whenever you hear thunder"],
+
+	"amount": ["so much", "that much", "back then", "more than you can say", "that night", "when #event#"], 
+
+	"time": ["\ for #spec#", "\ since #event#", "", "...", "\ every single day"],
+
+	"spec": ["a while", "a long time", "too long", "ever", "years", "long enough", "so long", "what feels like my whole life", "any significant amount of time", "long enough"],
+
+	"event": ["it happened", "September", "the leaves started falling down", "she left", "we were falling", "we were falling in love", "we started falling in love", "last year", "I told you I was a virgin", "my mom died", "the city was built", "everyone left", "I left", "that night", "you did it"],
+
+	"subjiw": ["I", "We", "But we", "No wonder, I", "Is it because I", "It\'s true, we", "It\'s just that we", "It\'s just that I"],
+
+	"subjecti": ["I", "but I", "no wonder, I", "is it because I", "it's just that I"],
+
+	"iaction": ["\'ve been gone#time#", "\ haven\'t thought about this#time#", "\'ve been miserable since #event#", "\ used to be happy", "\'ve been here before", "\'m avoiding it", "\ can't sleep since #event#", "\ haven\'t seen you#time#", "\'ve done a bad thing", "\ was fantisizing about #student#", "\ haven\'t been happy#time#", "\ need something else", "\ needed you", "\ realized", "\ just needed you to be there", "'ve been floating away#time#", "\'m waiting for something", "\'ve waited for you for #spec#", "\'ve been afraid#time#", "\ was trying too hard", "\'m afraid"],
+
+	"actionnoend": ["wanted it to go on,", "\ still need something else", "\ needed me", "\ haven\'t done that in a long time"],
+
+	"timefigure": ["\ yet fallen so far", "\ and gotten nowhere", "\ and need to slow down"],
+
+	"student": ["Jack", "Alexis", "Neil", "Andrew", "Jeremy", "Ruby", "Will", "Izzy", "Aubrey", "Simon", "Ben", "Harry", "Joe","Jiajie", "todd"]
+}
+var grammar = tracery.createGrammar(grammarObj)
+function generate(){
+	var t = grammar.flatten("#Generation#");
+	$('h1').text(t);
+}
+</script>
