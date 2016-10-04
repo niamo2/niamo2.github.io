@@ -1,0 +1,18 @@
+<script src="../lib/jquery-1.11.1.min.js"></script>
+<script src="../lib/markov.js"></script>
+<script>
+var txt;
+var markov = new MarkovGeneratorWord(3,450)
+$.get("masterchef.txt", function(text) {
+     markov.feed(text);
+});
+$.get("genesis.txt", function(text) {
+     markov.feed(text);
+});
+function generate(){
+	var t = markov.generate()
+	$('h1').text(t);
+}
+</script>
+<h1>Last week on MasterChef</h1>
+<button onclick="generate()">Drama</button>

@@ -1,0 +1,14 @@
+<script src="../lib/jquery-1.11.1.min.js"></script>
+<script src="../lib/markov.js"></script>
+<script>
+var markov = new MarkovGenerator(2,150," ")
+var text = "fear anger sadness joyfulness disgust trust anticipate surprise friendship fear shame kindness pity indignation love wonder happiness amusement courage pity pride closeness complaint caution patience relaxation respect appreciation hope confusion stuffy-nose sneezing sore-throat drowsiness dizziness feeling-nervous mild-nausea upset-stomach–feelings constipation increased-appetite weight-changes sleep-problems insomnia decreased-sex-drive impotence difficulty-having-an-orgasm dry-mouth" 
+markov.feed(text)
+function generate(){
+	var t = markov.generate()
+	t = t.split(" ").slice(0,1).join(" ")
+	$('h1').text(t);
+}
+</script>
+<h1>Markov-generated text will go here</h1>
+<button onclick="generate()">Generate</button>
